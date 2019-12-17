@@ -1,0 +1,31 @@
+#"03~I<MWIVYHE6PSN<2<<<<<<<<<<<<<<<~9605109M2205108MWI<<<<<<<<<<<8~CHINERE<<MICHAEL<<<<<<<<<<<<<<~CHINERE~VYHE6PSN~MICHAEL~~Male~10 May 1996~15 #Jul 2017~"
+
+
+def scan():
+ scannedText = raw_input("Scan Barcode:")
+ parseBarcode(scannedText) 
+# barcode = 
+
+
+
+def parseBarcode(text):
+ X,X2,X3,X4,LN,NID,FN,X5,GEN,DOB,REGDATE,X6 = text.split("~")
+ #name =
+ #surname =""
+ #gender =""
+ #dob = ""
+ #natID = a
+ labelFile = open("/home/ghii/Desktop/test.lbl", "w+")
+ labelFile.write("N\nq801\nQ313,026\nZT\n")
+ labelFile.write('A30,30,0,3,1,1,N,"{n} {s} )"\n'.format(n=FN ,s =LN))
+ labelFile.write('A30,70,0,3,1,1,N,"{D} {G}"\n'.format(D=DOB ,G =GEN))
+ labelFile.write('B30,180,0,1,4,4,100,N,"{B}"\n'.format(B=NID))
+ labelFile.write("P1\n")
+ labelFile.close()
+ printFile() 
+
+def printFile():
+ os.system('cat /home/ghii/Desktop/test.lbl > /dev/usb/lp0')
+
+scan()
+
